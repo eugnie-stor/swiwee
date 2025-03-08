@@ -6,6 +6,7 @@
   <title>Derin Studios Jam</title>
   <meta name="description" content="Yaratıcılık ve eğlence dolu 72 saatlik bir maceraya hazır mısın? 17-20 Ekim'de sizlerle!">
   <link rel="icon" href="/favicon.ico">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
   <style>
     body {
       margin: 0;
@@ -15,6 +16,91 @@
       overflow-x: hidden;
     }
 
+    /* Modern ve Soft Navbar Stili */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      background-color: rgba(0, 0, 0, 0.9);
+      border-bottom: 2px solid #ff8c42; /* Turuncu renk */
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      backdrop-filter: blur(10px);
+    }
+
+    .navbar-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #ff8c42; /* Turuncu renk */
+      transition: all 0.3s ease;
+    }
+
+    .navbar-logo:hover {
+      color: #ff6f00; /* Daha koyu turuncu */
+      transform: scale(1.05);
+    }
+
+    .navbar-logo img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      transition: transform 0.3s ease;
+    }
+
+    .navbar-logo:hover img {
+      transform: rotate(15deg);
+    }
+
+    .navbar-menu {
+      display: flex;
+      gap: 1.5rem;
+      align-items: center;
+    }
+
+    .navbar-menu a {
+      color: #fff;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    .navbar-menu a::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background-color: #ff8c42; /* Turuncu renk */
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s ease;
+    }
+
+    .navbar-menu a.active::after {
+      transform: scaleX(1);
+    }
+
+    .navbar-menu a.active {
+      color: #ff8c42; /* Turuncu renk */
+      font-weight: bold;
+    }
+
+    .navbar-menu a i {
+      font-size: 1.2rem;
+    }
+
+    /* Arka Plan ve İçerik Stili */
     .background {
       position: fixed;
       top: 0;
@@ -40,6 +126,7 @@
       z-index: 1;
       text-align: center;
       padding: 2rem;
+      padding-top: 6rem; /* Navbar yüksekliği için boşluk */
     }
 
     .logo-container {
@@ -99,7 +186,7 @@
     .social-button:hover {
       background-color: rgba(255, 255, 255, 0.2);
       transform: scale(1.1);
-      border-color: #00ffcc;
+      border-color: #ff8c42; /* Turuncu renk */
     }
 
     .social-button img {
@@ -145,10 +232,44 @@
     .sponsors img:hover {
       transform: scale(1.1);
     }
+
+    /* Sayfayı Uzatmak İçin Ek İçerik */
+    .extra-content {
+      padding: 2rem;
+      background-color: rgba(255, 255, 255, 0.05);
+      margin: 2rem 0;
+      border-radius: 10px;
+    }
+
+    .extra-content h2 {
+      margin-bottom: 1rem;
+    }
+
+    .extra-content p {
+      line-height: 1.6;
+    }
   </style>
 </head>
 <body>
+  <!-- Modern ve Soft Navbar -->
+  <nav class="navbar">
+    <div class="navbar-logo">
+      <img src="https://via.placeholder.com/40" alt="Derin Studios Logo">
+      <span>Derin Studios</span>
+    </div>
+    <div class="navbar-menu">
+      <a href="#" class="active"><i class="fas fa-home"></i> Ana Sayfa</a>
+      <a href="#about"><i class="fas fa-info-circle"></i> Hakkında</a>
+      <a href="#announcements"><i class="fas fa-bullhorn"></i> Duyurular</a>
+      <a href="#events"><i class="fas fa-calendar-alt"></i> Etkinlikler</a>
+      <a href="#contact"><i class="fas fa-envelope"></i> İletişim</a>
+    </div>
+  </nav>
+
+  <!-- Arka Plan -->
   <div class="background"></div>
+
+  <!-- İçerik -->
   <div class="content">
     <div class="logo-container">
       <img src="https://via.placeholder.com/200x100.png?text=Derin+Studios+Logo" alt="Derin Studios Logo" class="derin-studios-logo">
@@ -168,7 +289,7 @@
         <img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" alt="YouTube">
       </a>
     </div>
-    <div class="announcement">
+    <div class="announcement" id="announcements">
       <h2>DERİN STUDIOS JAM ‘24 HAKKINDA;</h2>
       <p>Tüm Derin Studios Jam takipçi ve katılımcılarına selamlar. Bugün sizlerle paylaşmamız gereken önemli bir karar var.<br><br>Geçtiğimiz günlerde ülkemizde Discord uygulamasına erişimin engellenmesi, jüri üyelerimizin ve sponsorlarımızın da değerli desteğiyle organize ettiğimiz Derin Studios Jam ‘24 etkinliğimizi büyük bir risk altında bıraktı. Fiziksel olarak 120 kişiyi ağırladığımız etkinliğimizin online tarafında 5000’den fazla oyun geliştiricisine ev sahipliği yapıyoruz ve etkinliğimizin tüm yönetimi – iletişim, duyurular, dosya paylaşımları, mini-etkinlikler ve hediye dağıtımları – Discord platformu üzerinden yürütülüyor. Erişim engeli, etkinliğimizin hemen bir hafta öncesine denk geldiği için, alternatif bir platforma sağlıklı bir şekilde geçiş yapmak ve her şeyi yeniden entegre etmek için yeterli zamanımız bulunmuyor. Bu durum, etkinliğimizin verimini ve kalitesini bir hayli olumsuz etkiliyor.<br><br>Bunun yanı sıra, ülkemizde yaşanan kadın cinayetleri ve her geçen gün duyduğumuz acı haberler nedeniyle eğlence temalı bir etkinlik düzenlemek konusunda çekincelerimiz var. Toplum olarak bu denli zor bir süreçten geçerken, bir “festival” havasına girip neşeli içerikler paylaşma duygusunu taşımıyor ve doğru olmayacağını düşünüyoruz.<br><br>Tüm bu etkenler doğrultusunda, üzülerek Derin Studios Jam ‘24’ü erteleme kararı aldığımızı sizlere bildirmek istiyoruz. Discord platformunun ne zaman yeniden erişime açılacağı henüz belirsiz. Hem platform durumlarını (engel kalkarsa Discord, kalkmazsa etkinliğin farklı platformlara aktarımı), hem katılımcılarımızın akademik sınav takvimini, hem de ülke gündemi ve sosyal ortamının uyumunu göz önünde bulundurarak etkinliğimizi 2025 yılının ilk çeyreğine ertelediğimizi belirtmek isteriz.<br><br>Sizlerin bu durumu anlayışla karşılayacağını umuyor; heyecanınızın, etkinliğin yeni tarihinde aynı şekilde devam edeceğine inanıyoruz. Bu sadece bir erteleme ve daha keyifli günlerde, birlikte çok daha güzel bir etkinlik gerçekleştireceğimizden eminiz.<br><br>Desteğiniz ve anlayışınız için çok teşekkür ederiz.<br><br><b>— Derin Studios &amp; Game Ventures Network</b></p>
     </div>
@@ -176,6 +297,56 @@
       <img src="/assets/sponsor/Magara.png" alt="Magara Sponsor">
       <img src="/assets/sponsor/GameVenturesNetwork.png" alt="Game Ventures Network Sponsor">
     </div>
+
+    <!-- Hakkında Bölümü -->
+    <div class="extra-content" id="about">
+      <h2>Derin Studios Hakkında</h2>
+      <p>Derin Studios, oyun geliştirme alanında yaratıcı projelere imza atan bir stüdyodur. Amacımız, oyun severler için eşsiz deneyimler sunmak ve oyun dünyasına yeni soluklar getirmektir. Ekip olarak, her bir projemizde yenilikçi fikirler ve yüksek kaliteyi ön planda tutuyoruz.</p>
+    </div>
+
+    <!-- Duyurular Bölümü -->
+    <div class="extra-content" id="announcements">
+      <h2>Duyurular</h2>
+      <p>Derin Studios Jam ‘24 etkinliğimiz 2025 yılının ilk çeyreğine ertelenmiştir. Detaylı bilgi için takipte kalın.</p>
+    </div>
+
+    <!-- Etkinlikler Bölümü -->
+    <div class="extra-content" id="events">
+      <h2>Etkinlikler</h2>
+      <p>Gelecek etkinliklerimiz hakkında bilgi almak için sosyal medya hesaplarımızı takip edebilirsiniz.</p>
+    </div>
+
+    <!-- İletişim Bölümü -->
+    <div class="extra-content" id="contact">
+      <h2>İletişim</h2>
+      <p>Bizimle iletişime geçmek için aşağıdaki sosyal medya hesaplarımızı kullanabilir veya e-posta gönderebilirsiniz.</p>
+    </div>
   </div>
+
+  <!-- JavaScript -->
+  <script>
+    // Navbar seçili menü öğesi animasyonu
+    const navbarLinks = document.querySelectorAll('.navbar-menu a');
+    navbarLinks.forEach(link => {
+      link.addEventListener('click', (e) => {
+        // Tüm bağlantılardan "active" sınıfını kaldır
+        navbarLinks.forEach(link => link.classList.remove('active'));
+        // Tıklanan bağlantıya "active" sınıfını ekle
+        e.target.classList.add('active');
+      });
+    });
+
+    // Sayfa yüklendiğinde aktif menü öğesini belirle
+    window.addEventListener('load', () => {
+      const currentHash = window.location.hash;
+      if (currentHash) {
+        const activeLink = document.querySelector(`.navbar-menu a[href="${currentHash}"]`);
+        if (activeLink) {
+          navbarLinks.forEach(link => link.classList.remove('active'));
+          activeLink.classList.add('active');
+        }
+      }
+    });
+  </script>
 </body>
 </html>
