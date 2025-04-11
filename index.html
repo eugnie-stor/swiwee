@@ -1285,6 +1285,39 @@
             text-decoration: underline;
         }
 
+        /* User Profile */
+        .user-profile {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            color: var(--text);
+        }
+
+        .user-profile.active {
+            display: flex;
+        }
+
+        .user-avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--accent);
+            margin-bottom: 15px;
+        }
+
+        .user-name {
+            font-size: 22px;
+            margin-bottom: 5px;
+        }
+
+        .user-email {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+        }
+
         /* Responsive */
         @media (max-width: 1200px) {
             .about-container {
@@ -1458,11 +1491,17 @@
                 </div>
             </div>
             <div class="profile" id="profile">
-                <img src="https://via.placeholder.com/35" alt="Profil Resmi">
+                <img src="https://via.placeholder.com/35" alt="Profil Resmi" id="profile-img">
                 <i class="fas fa-caret-down"></i>
                 <div class="profile-menu" id="profile-menu">
+                    <div class="user-profile" id="user-profile">
+                        <img src="https://via.placeholder.com/100" alt="Profil Resmi" class="user-avatar">
+                        <div class="user-name" id="user-name">Misafir</div>
+                        <div class="user-email" id="user-email">misafir@magicflix.com</div>
+                    </div>
                     <a href="#" id="login-btn"><i class="fas fa-sign-in-alt"></i> Giriş Yap</a>
                     <a href="#" id="register-btn"><i class="fas fa-user-plus"></i> Kayıt Ol</a>
+                    <a href="#" id="logout-btn" style="display: none;"><i class="fas fa-sign-out-alt"></i> Çıkış Yap</a>
                     <div class="profile-divider"></div>
                     <a href="#"><i class="fas fa-heart"></i> Favorilerim</a>
                     <a href="#"><i class="fas fa-history"></i> Geçmiş</a>
@@ -1590,7 +1629,7 @@
                 <button class="watch-now-btn">Hemen İzle</button>
             </div>
             <div class="movie-card">
-                <img src="https://m.media-amazon.com/images/M/MV5BMTYwNjAyODIyMF5BMl5BanBnXkFtZTYwNDMwMDk2._V1_.jpg" alt="The Lord of the Rings">
+                <img src="https://m.media-amazon.com/images/M/MV5BMTYwNjAyODIyMF5BMl5BanBnXkFtZTYwMDk2MDg3._V1_FMjpg_UX1000_.jpg" alt="The Lord of the Rings">
                 <div class="movie-info">
                     <h3 class="movie-title">The Lord of the Rings</h3>
                     <div class="movie-meta">
@@ -1833,6 +1872,9 @@
     </div>
 
     <script>
+        // Kullanıcı oturum durumu
+        let currentUser = null;
+        
         // Navbar scroll effect
         window.addEventListener('scroll', function() {
             const navbar = document.querySelector('.navbar');
@@ -1847,10 +1889,25 @@
         const playButton = document.getElementById('play-button');
         const playerModal = document.getElementById('player-modal');
         const closePlayer = document.getElementById('close-player');
+        const watchNowButtons = document.querySelectorAll('.watch-now-btn');
 
-        playButton.addEventListener('click', function() {
+        function openPlayerModal() {
+            if (!currentUser) {
+                showAuthModal('login');
+                alert('Lütfen önce giriş yapın!');
+                return;
+            }
             playerModal.classList.add('active');
             document.body.style.overflow = 'hidden';
+        }
+
+        playButton.addEventListener('click', openPlayerModal);
+        
+        watchNowButtons.forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.stopPropagation();
+                openPlayerModal();
+            });
         });
 
         closePlayer.addEventListener('click', function() {
@@ -1877,6 +1934,13 @@
         // Profile menu toggle
         const profile = document.getElementById('profile');
         const profileMenu = document.getElementById('profile-menu');
+        const profileImg = document.getElementById('profile-img');
+        const logoutBtn = document.getElementById('logout-btn');
+        const loginBtn = document.getElementById('login-btn');
+        const registerBtn = document.getElementById('register-btn');
+        const userProfile = document.getElementById('user-profile');
+        const userName = document.getElementById('user-name');
+        const userEmail = document.getElementById('user-email');
 
         profile.addEventListener('click', function(e) {
             e.stopPropagation();
@@ -1921,6 +1985,12 @@
                                 <p>${movie.year} • <i class="fas fa-star"></i> ${movie.rating}/10</p>
                             </div>
                         `;
+                        item.addEventListener('click', function() {
+                            // Burada film detay sayfasına yönlendirme yapılabilir
+                            alert(`${movie.title} filmi seçildi!`);
+                            searchResults.classList.remove('active');
+                            searchInput.value = '';
+                        });
                         searchResults.appendChild(item);
                     });
                     searchResults.classList.add('active');
@@ -1952,8 +2022,6 @@
         const registerForm = document.getElementById('register-form');
         const showRegister = document.getElementById('show-register');
         const showLogin = document.getElementById('show-login');
-        const loginBtn = document.getElementById('login-btn');
-        const registerBtn = document.getElementById('register-btn');
 
         // Show login/register modal
         function showAuthModal(formToShow) {
@@ -2035,14 +2103,24 @@
             const email = document.getElementById('login-email').value;
             const password = document.getElementById('login-password').value;
             
-            // Here you would typically send this data to your server
-            console.log('Login attempt with:', email, password);
+            // Basit bir doğrulama
+            if (!email || !password) {
+                alert('Lütfen tüm alanları doldurun!');
+                return;
+            }
             
-            // For demo purposes, just close the modal
+            // Kullanıcı girişi başarılı
+            currentUser = {
+                name: "Test Kullanıcı",
+                email: email,
+                avatar: "https://randomuser.me/api/portraits/men/32.jpg"
+            };
+            
+            updateUserProfile();
+            
             authModal.classList.remove('active');
             document.body.style.overflow = 'auto';
             
-            // Show success message (in a real app, you'd check the response first)
             alert('Başarıyla giriş yapıldı!');
         });
 
@@ -2053,20 +2131,59 @@
             const password = document.getElementById('register-password').value;
             const confirm = document.getElementById('register-confirm').value;
             
+            if (!name || !email || !password || !confirm) {
+                alert('Lütfen tüm alanları doldurun!');
+                return;
+            }
+            
             if (password !== confirm) {
                 alert('Şifreler eşleşmiyor!');
                 return;
             }
             
-            // Here you would typically send this data to your server
-            console.log('Registration attempt with:', name, email, password);
+            // Kullanıcı kaydı başarılı
+            currentUser = {
+                name: name,
+                email: email,
+                avatar: "https://randomuser.me/api/portraits/men/32.jpg"
+            };
             
-            // For demo purposes, just close the modal
+            updateUserProfile();
+            
             authModal.classList.remove('active');
             document.body.style.overflow = 'auto';
             
-            // Show success message (in a real app, you'd check the response first)
-            alert('Başarıyla kayıt olundu! Hoş geldiniz, ' + name);
+            alert(`Başarıyla kayıt olundu! Hoş geldiniz, ${name}`);
+        });
+
+        // Kullanıcı profili güncelleme
+        function updateUserProfile() {
+            if (currentUser) {
+                profileImg.src = currentUser.avatar;
+                userName.textContent = currentUser.name;
+                userEmail.textContent = currentUser.email;
+                userProfile.style.display = 'flex';
+                loginBtn.style.display = 'none';
+                registerBtn.style.display = 'none';
+                logoutBtn.style.display = 'block';
+            } else {
+                profileImg.src = "https://via.placeholder.com/35";
+                userName.textContent = "Misafir";
+                userEmail.textContent = "misafir@magicflix.com";
+                userProfile.style.display = 'none';
+                loginBtn.style.display = 'block';
+                registerBtn.style.display = 'block';
+                logoutBtn.style.display = 'none';
+            }
+        }
+
+        // Çıkış yap
+        logoutBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            currentUser = null;
+            updateUserProfile();
+            profileMenu.classList.remove('active');
+            alert('Başarıyla çıkış yapıldı!');
         });
 
         // Scroll to top function
@@ -2090,19 +2207,57 @@
             const navLinks = document.querySelectorAll('.nav-links a');
             navLinks.forEach(link => {
                 link.classList.remove('active');
-                if (link.textContent.toLowerCase().includes(sectionId)) {
+                if (link.textContent.toLowerCase().includes(sectionId) || 
+                    (sectionId === 'home' && link.textContent === 'Ana Sayfa')) {
                     link.classList.add('active');
                 }
             });
         }
 
-        // Watch now buttons functionality
-        const watchNowButtons = document.querySelectorAll('.watch-now-btn');
-        watchNowButtons.forEach(button => {
-            button.addEventListener('click', function(e) {
-                e.stopPropagation();
-                playerModal.classList.add('active');
-                document.body.style.overflow = 'hidden';
+        // Abone ol butonları
+        const subscribeButtons = document.querySelectorAll('.subscribe-btn');
+        subscribeButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                if (!currentUser) {
+                    showAuthModal('login');
+                    alert('Lütfen önce giriş yapın!');
+                    return;
+                }
+                
+                const planName = this.parentElement.querySelector('h3').textContent;
+                const planPrice = this.parentElement.querySelector('.price').textContent;
+                
+                alert(`Tebrikler! ${planName} paketine (${planPrice}) abone oldunuz!`);
+            });
+        });
+
+        // Sayfa yüklendiğinde çalışacak kodlar
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animasyonları tetikle
+            const heroElements = document.querySelectorAll('.hero h1, .hero p, .hero-buttons');
+            heroElements.forEach(el => {
+                el.style.animationPlayState = 'running';
+            });
+            
+            // Kullanıcı profili güncelle
+            updateUserProfile();
+            
+            // Film kartlarına hover efekti ekle
+            const movieCards = document.querySelectorAll('.movie-card');
+            movieCards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.querySelector('.movie-info').style.opacity = '1';
+                    this.querySelector('.movie-info').style.transform = 'translateY(0)';
+                    this.querySelector('.watch-now-btn').style.opacity = '1';
+                    this.querySelector('.watch-now-btn').style.transform = 'translate(-50%, -50%) scale(1)';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.querySelector('.movie-info').style.opacity = '0';
+                    this.querySelector('.movie-info').style.transform = 'translateY(20px)';
+                    this.querySelector('.watch-now-btn').style.opacity = '0';
+                    this.querySelector('.watch-now-btn').style.transform = 'translate(-50%, -50%) scale(0.8)';
+                });
             });
         });
     </script>
