@@ -1084,6 +1084,152 @@
             background-color: rgba(229, 9, 20, 0.2);
         }
 
+        /* Player Controls */
+        .player-controls {
+            position: absolute;
+            bottom: 20px;
+            left: 0;
+            width: 100%;
+            padding: 0 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            z-index: 10;
+        }
+
+        .progress-container {
+            flex: 1;
+            height: 5px;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 3px;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background-color: var(--accent);
+            border-radius: 3px;
+            width: 0;
+            position: relative;
+        }
+
+        .progress-time {
+            position: absolute;
+            bottom: 15px;
+            font-size: 12px;
+            color: var(--text);
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 3px 6px;
+            border-radius: 3px;
+            transform: translateX(-50%);
+            display: none;
+        }
+
+        .progress-container:hover .progress-time {
+            display: block;
+        }
+
+        .time-display {
+            font-size: 14px;
+            color: var(--text);
+            min-width: 100px;
+            text-align: center;
+        }
+
+        .control-btn {
+            background: none;
+            border: none;
+            color: var(--text);
+            font-size: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .control-btn:hover {
+            color: var(--accent);
+            transform: scale(1.2);
+        }
+
+        .volume-control {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .volume-slider {
+            width: 80px;
+            height: 5px;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 3px;
+            appearance: none;
+            outline: none;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .volume-slider::-webkit-slider-thumb {
+            appearance: none;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: var(--accent);
+            cursor: pointer;
+        }
+
+        .volume-container:hover .volume-slider {
+            opacity: 1;
+        }
+
+        .settings-btn {
+            position: relative;
+        }
+
+        /* Settings Menu */
+        .settings-menu {
+            position: absolute;
+            bottom: 50px;
+            right: 0;
+            background-color: var(--secondary);
+            border-radius: 8px;
+            padding: 15px;
+            width: 200px;
+            display: none;
+            z-index: 20;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .settings-menu.active {
+            display: block;
+        }
+
+        .settings-menu h4 {
+            font-size: 14px;
+            margin-bottom: 10px;
+            color: var(--text-secondary);
+        }
+
+        .quality-options, .subtitle-options {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-bottom: 15px;
+        }
+
+        .quality-option, .subtitle-option {
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 13px;
+        }
+
+        .quality-option:hover, .subtitle-option:hover,
+        .quality-option.active, .subtitle-option.active {
+            background-color: var(--accent);
+            color: white;
+        }
+
         /* Kayıt/Giriş Modal */
         .auth-modal {
             position: fixed;
@@ -1318,6 +1464,176 @@
             margin-bottom: 20px;
         }
 
+        /* Sidebar */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            right: -350px;
+            width: 350px;
+            height: 100%;
+            background-color: var(--secondary);
+            z-index: 1500;
+            transition: all 0.4s cubic-bezier(0.65, 0, 0.35, 1);
+            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.3);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .sidebar.active {
+            right: 0;
+        }
+
+        .sidebar-header {
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .sidebar-header h3 {
+            font-size: 20px;
+            color: var(--text);
+        }
+
+        .close-sidebar {
+            background: none;
+            border: none;
+            color: var(--text);
+            font-size: 24px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .close-sidebar:hover {
+            color: var(--accent);
+            transform: rotate(90deg);
+        }
+
+        .sidebar-content {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        .settings-section {
+            margin-bottom: 30px;
+        }
+
+        .settings-section h4 {
+            font-size: 16px;
+            margin-bottom: 15px;
+            color: var(--text);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .settings-section h4 i {
+            color: var(--accent);
+        }
+
+        .settings-option {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .settings-option:last-child {
+            border-bottom: none;
+        }
+
+        .settings-option label {
+            font-size: 14px;
+            color: var(--text);
+            cursor: pointer;
+        }
+
+        .settings-option select {
+            background-color: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: var(--text);
+            padding: 5px 10px;
+            border-radius: 4px;
+            outline: none;
+        }
+
+        .settings-option select:focus {
+            border-color: var(--accent);
+        }
+
+        .toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 24px;
+        }
+
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(255, 255, 255, 0.2);
+            transition: .4s;
+            border-radius: 24px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 16px;
+            width: 16px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+        input:checked + .slider {
+            background-color: var(--accent);
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(26px);
+        }
+
+        .volume-slider-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            width: 100%;
+        }
+
+        .volume-slider-container input[type="range"] {
+            flex: 1;
+            height: 5px;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 3px;
+            appearance: none;
+            outline: none;
+        }
+
+        .volume-slider-container input[type="range"]::-webkit-slider-thumb {
+            appearance: none;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: var(--accent);
+            cursor: pointer;
+        }
+
         /* Responsive */
         @media (max-width: 1200px) {
             .about-container {
@@ -1358,6 +1674,11 @@
 
             .premium-card {
                 width: 280px;
+            }
+
+            .sidebar {
+                width: 300px;
+                right: -300px;
             }
         }
 
@@ -1415,6 +1736,11 @@
             .auth-content {
                 padding: 30px;
             }
+
+            .sidebar {
+                width: 280px;
+                right: -280px;
+            }
         }
 
         @media (max-width: 576px) {
@@ -1465,6 +1791,11 @@
                 height: 40px;
                 font-size: 16px;
             }
+
+            .sidebar {
+                width: 100%;
+                right: -100%;
+            }
         }
     </style>
 </head>
@@ -1495,7 +1826,7 @@
                 <i class="fas fa-caret-down"></i>
                 <div class="profile-menu" id="profile-menu">
                     <div class="user-profile" id="user-profile">
-                        <img src="https://via.placeholder.com/100" alt="Profil Resmi" class="user-avatar">
+                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Profil Resmi" class="user-avatar">
                         <div class="user-name" id="user-name">Misafir</div>
                         <div class="user-email" id="user-email">misafir@magicflix.com</div>
                     </div>
@@ -1536,7 +1867,7 @@
             <i class="fas fa-fire"></i> Popüler Filmler
         </h2>
         <div class="movies-container">
-            <div class="movie-card">
+            <div class="movie-card" data-video-id="5NYt1qirBWg">
                 <img src="https://m.media-amazon.com/images/M/MV5BMGVmMWNiMDktYjQ0Mi00MWIxLTk0N2UtN2ZlYTdkN2IzNDNlXkEyXkFqcGdeQXVyODE5NzE3OTE@._V1_.jpg" alt="Harry Potter">
                 <div class="movie-info">
                     <h3 class="movie-title">Harry Potter</h3>
@@ -1550,7 +1881,7 @@
                 </div>
                 <button class="watch-now-btn">Hemen İzle</button>
             </div>
-            <div class="movie-card">
+            <div class="movie-card" data-video-id="EXeTwQWrcwY">
                 <img src="https://m.media-amazon.com/images/M/MV5BMTMxNTMwODM0NF5BMl5BanBnXkFtZTcwODAyMTk2Mw@@._V1_.jpg" alt="The Dark Knight">
                 <div class="movie-info">
                     <h3 class="movie-title">The Dark Knight</h3>
@@ -1564,7 +1895,7 @@
                 </div>
                 <button class="watch-now-btn">Hemen İzle</button>
             </div>
-            <div class="movie-card">
+            <div class="movie-card" data-video-id="6hB3S9bIaco">
                 <img src="https://m.media-amazon.com/images/M/MV5BMDFkYTc0MGEtZmNhMC00ZDIzLWFmNTEtODM1ZmRlYWMwMWFmXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_.jpg" alt="The Shawshank Redemption">
                 <div class="movie-info">
                     <h3 class="movie-title">The Shawshank Redemption</h3>
@@ -1578,7 +1909,7 @@
                 </div>
                 <button class="watch-now-btn">Hemen İzle</button>
             </div>
-            <div class="movie-card">
+            <div class="movie-card" data-video-id="sY1S34973zA">
                 <img src="https://m.media-amazon.com/images/M/MV5BM2MyNjYxNmUtYTAwNi00MTYxLWJmNWYtYzZlODY3ZTk3OTFlXkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_.jpg" alt="The Godfather">
                 <div class="movie-info">
                     <h3 class="movie-title">The Godfather</h3>
@@ -1592,7 +1923,7 @@
                 </div>
                 <button class="watch-now-btn">Hemen İzle</button>
             </div>
-            <div class="movie-card">
+            <div class="movie-card" data-video-id="g8evyE9TuYk">
                 <img src="https://m.media-amazon.com/images/M/MV5BMTk4ODQzNDY3Ml5BMl5BanBnXkFtZTcwODA0NTM4Nw@@._V1_.jpg" alt="The Dark Knight Rises">
                 <div class="movie-info">
                     <h3 class="movie-title">The Dark Knight Rises</h3>
@@ -1614,7 +1945,7 @@
             <i class="fas fa-hat-wizard"></i> Fantastik Filmler
         </h2>
         <div class="movies-container">
-            <div class="movie-card">
+            <div class="movie-card" data-video-id="SDnYMbYB-nU">
                 <img src="https://m.media-amazon.com/images/M/MV5BNjQ3NWNlNmQtMTE5ZS00MDdmLTlkZjUtZTBlM2UxMGFiMTU3XkEyXkFqcGdeQXVyNjUwNzk3NDc@._V1_.jpg" alt="The Hobbit">
                 <div class="movie-info">
                     <h3 class="movie-title">The Hobbit</h3>
@@ -1628,7 +1959,7 @@
                 </div>
                 <button class="watch-now-btn">Hemen İzle</button>
             </div>
-            <div class="movie-card">
+            <div class="movie-card" data-video-id="V75dMMIW2B4">
                 <img src="https://m.media-amazon.com/images/M/MV5BMTYwNjAyODIyMF5BMl5BanBnXkFtZTYwMDk2MDg3._V1_FMjpg_UX1000_.jpg" alt="The Lord of the Rings">
                 <div class="movie-info">
                     <h3 class="movie-title">The Lord of the Rings</h3>
@@ -1642,7 +1973,7 @@
                 </div>
                 <button class="watch-now-btn">Hemen İzle</button>
             </div>
-            <div class="movie-card">
+            <div class="movie-card" data-video-id="vKQi3bBA1y8">
                 <img src="https://m.media-amazon.com/images/M/MV5BZjZkN2M5ODgtMjQ2OC00ZjAxLWE1MjMtZDE0OTNmNGM0NWEwXkEyXkFqcGdeQXVyNjUxMjc1OTM@._V1_.jpg" alt="The Matrix">
                 <div class="movie-info">
                     <h3 class="movie-title">The Matrix</h3>
@@ -1656,7 +1987,7 @@
                 </div>
                 <button class="watch-now-btn">Hemen İzle</button>
             </div>
-            <div class="movie-card">
+            <div class="movie-card" data-video-id="naQr0uTrH_s">
                 <img src="https://m.media-amazon.com/images/M/MV5BMTk4OTk1MjI1OV5BMl5BanBnXkFtZTcwNjM1NTQyMQ@@._V1_.jpg" alt="Pirates of the Caribbean">
                 <div class="movie-info">
                     <h3 class="movie-title">Pirates of the Caribbean</h3>
@@ -1670,7 +2001,7 @@
                 </div>
                 <button class="watch-now-btn">Hemen İzle</button>
             </div>
-            <div class="movie-card">
+            <div class="movie-card" data-video-id="TcMBFSGVi1c">
                 <img src="https://m.media-amazon.com/images/M/MV5BMTc5MDE2ODcwNV5BMl5BanBnXkFtZTgwMzI2NzQ2NzM@._V1_.jpg" alt="Avengers: Endgame">
                 <div class="movie-info">
                     <h3 class="movie-title">Avengers: Endgame</h3>
@@ -1810,7 +2141,122 @@
     <div class="player-modal" id="player-modal">
         <div class="player-container">
             <span class="close-player" id="close-player">&times;</span>
-            <iframe width="100%" height="600" src="https://www.youtube.com/embed/5NYt1qirBWg?autoplay=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <div id="video-container"></div>
+            <div class="player-controls">
+                <button class="control-btn" id="play-pause-btn"><i class="fas fa-play"></i></button>
+                <div class="progress-container" id="progress-container">
+                    <div class="progress-bar" id="progress-bar"></div>
+                    <div class="progress-time" id="progress-time">00:00</div>
+                </div>
+                <div class="time-display" id="time-display">00:00 / 00:00</div>
+                <div class="volume-container">
+                    <button class="control-btn" id="volume-btn"><i class="fas fa-volume-up"></i></button>
+                    <input type="range" class="volume-slider" id="volume-slider" min="0" max="1" step="0.1" value="1">
+                </div>
+                <button class="control-btn settings-btn" id="settings-btn">
+                    <i class="fas fa-cog"></i>
+                    <div class="settings-menu" id="settings-menu">
+                        <h4>Kalite</h4>
+                        <div class="quality-options">
+                            <div class="quality-option active">1080p</div>
+                            <div class="quality-option">720p</div>
+                            <div class="quality-option">480p</div>
+                        </div>
+                        <h4>Altyazı</h4>
+                        <div class="subtitle-options">
+                            <div class="subtitle-option active">Türkçe</div>
+                            <div class="subtitle-option">İngilizce</div>
+                            <div class="subtitle-option">Kapalı</div>
+                        </div>
+                    </div>
+                </button>
+                <button class="control-btn" id="fullscreen-btn"><i class="fas fa-expand"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <h3><i class="fas fa-cog"></i> Ayarlar</h3>
+            <button class="close-sidebar" id="close-sidebar">&times;</button>
+        </div>
+        <div class="sidebar-content">
+            <div class="settings-section">
+                <h4><i class="fas fa-volume-up"></i> Ses Ayarları</h4>
+                <div class="settings-option">
+                    <label for="master-volume">Ana Ses</label>
+                    <div class="volume-slider-container">
+                        <input type="range" id="master-volume" min="0" max="1" step="0.1" value="1">
+                    </div>
+                </div>
+                <div class="settings-option">
+                    <label for="background-music">Arka Plan Müziği</label>
+                    <div class="volume-slider-container">
+                        <input type="range" id="background-music" min="0" max="1" step="0.1" value="0.5">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="settings-section">
+                <h4><i class="fas fa-video"></i> Görüntü Ayarları</h4>
+                <div class="settings-option">
+                    <label for="video-quality">Video Kalitesi</label>
+                    <select id="video-quality">
+                        <option value="auto">Otomatik</option>
+                        <option value="1080">1080p</option>
+                        <option value="720">720p</option>
+                        <option value="480">480p</option>
+                    </select>
+                </div>
+                <div class="settings-option">
+                    <label for="dark-mode">Karanlık Mod</label>
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="dark-mode" checked>
+                        <span class="slider"></span>
+                    </label>
+                </div>
+            </div>
+            
+            <div class="settings-section">
+                <h4><i class="fas fa-closed-captioning"></i> Altyazı Ayarları</h4>
+                <div class="settings-option">
+                    <label for="subtitle-language">Altyazı Dili</label>
+                    <select id="subtitle-language">
+                        <option value="tr">Türkçe</option>
+                        <option value="en">İngilizce</option>
+                        <option value="none">Kapalı</option>
+                    </select>
+                </div>
+                <div class="settings-option">
+                    <label for="subtitle-size">Altyazı Boyutu</label>
+                    <select id="subtitle-size">
+                        <option value="small">Küçük</option>
+                        <option value="medium" selected>Orta</option>
+                        <option value="large">Büyük</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="settings-section">
+                <h4><i class="fas fa-child"></i> Ebeveyn Kontrolü</h4>
+                <div class="settings-option">
+                    <label for="parental-control">Ebeveyn Kontrolü</label>
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="parental-control">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                <div class="settings-option">
+                    <label for="content-rating">İçerik Sınırı</label>
+                    <select id="content-rating">
+                        <option value="all">Tüm İçerikler</option>
+                        <option value="7">7+</option>
+                        <option value="13">13+</option>
+                        <option value="18">18+</option>
+                    </select>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -1890,23 +2336,222 @@
         const playerModal = document.getElementById('player-modal');
         const closePlayer = document.getElementById('close-player');
         const watchNowButtons = document.querySelectorAll('.watch-now-btn');
+        const videoContainer = document.getElementById('video-container');
+        const playPauseBtn = document.getElementById('play-pause-btn');
+        const progressBar = document.getElementById('progress-bar');
+        const progressContainer = document.getElementById('progress-container');
+        const progressTime = document.getElementById('progress-time');
+        const timeDisplay = document.getElementById('time-display');
+        const volumeBtn = document.getElementById('volume-btn');
+        const volumeSlider = document.getElementById('volume-slider');
+        const fullscreenBtn = document.getElementById('fullscreen-btn');
+        const settingsBtn = document.getElementById('settings-btn');
+        const settingsMenu = document.getElementById('settings-menu');
+        let currentVideoId = '';
+        let player;
 
-        function openPlayerModal() {
+        // Film verileri (video ID'leri ile)
+        const movieData = {
+            '5NYt1qirBWg': { title: 'Harry Potter', duration: '2:30:00' },
+            'EXeTwQWrcwY': { title: 'The Dark Knight', duration: '2:32:00' },
+            '6hB3S9bIaco': { title: 'The Shawshank Redemption', duration: '2:22:00' },
+            'sY1S34973zA': { title: 'The Godfather', duration: '2:55:00' },
+            'g8evyE9TuYk': { title: 'The Dark Knight Rises', duration: '2:44:00' },
+            'SDnYMbYB-nU': { title: 'The Hobbit', duration: '2:49:00' },
+            'V75dMMIW2B4': { title: 'The Lord of the Rings', duration: '2:58:00' },
+            'vKQi3bBA1y8': { title: 'The Matrix', duration: '2:16:00' },
+            'naQr0uTrH_s': { title: 'Pirates of the Caribbean', duration: '2:23:00' },
+            'TcMBFSGVi1c': { title: 'Avengers: Endgame', duration: '3:01:00' }
+        };
+
+        function openPlayerModal(videoId) {
             if (!currentUser) {
                 showAuthModal('login');
                 alert('Lütfen önce giriş yapın!');
                 return;
             }
+            
+            currentVideoId = videoId;
             playerModal.classList.add('active');
             document.body.style.overflow = 'hidden';
+            
+            // YouTube API ile video yükleme
+            if (!player) {
+                loadYouTubeAPI();
+            } else {
+                player.loadVideoById(videoId);
+                player.playVideo();
+            }
         }
 
-        playButton.addEventListener('click', openPlayerModal);
+        function loadYouTubeAPI() {
+            const tag = document.createElement('script');
+            tag.src = "https://www.youtube.com/iframe_api";
+            const firstScriptTag = document.getElementsByTagName('script')[0];
+            firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+        }
+
+        // YouTube API callback
+        function onYouTubeIframeAPIReady() {
+            player = new YT.Player('video-container', {
+                height: '600',
+                width: '100%',
+                videoId: currentVideoId,
+                playerVars: {
+                    'autoplay': 1,
+                    'controls': 0,
+                    'disablekb': 1,
+                    'modestbranding': 1,
+                    'rel': 0
+                },
+                events: {
+                    'onReady': onPlayerReady,
+                    'onStateChange': onPlayerStateChange
+                }
+            });
+        }
+
+        function onPlayerReady(event) {
+            updateTimeDisplay();
+            setInterval(updateProgressBar, 1000);
+            
+            // Volume control
+            volumeSlider.addEventListener('input', function() {
+                const volume = this.value;
+                player.setVolume(volume * 100);
+                
+                if (volume == 0) {
+                    volumeBtn.innerHTML = '<i class="fas fa-volume-mute"></i>';
+                } else if (volume < 0.5) {
+                    volumeBtn.innerHTML = '<i class="fas fa-volume-down"></i>';
+                } else {
+                    volumeBtn.innerHTML = '<i class="fas fa-volume-up"></i>';
+                }
+            });
+            
+            // Play/Pause button
+            playPauseBtn.addEventListener('click', function() {
+                const playerState = player.getPlayerState();
+                if (playerState === YT.PlayerState.PLAYING) {
+                    player.pauseVideo();
+                    this.innerHTML = '<i class="fas fa-play"></i>';
+                } else {
+                    player.playVideo();
+                    this.innerHTML = '<i class="fas fa-pause"></i>';
+                }
+            });
+            
+            // Progress bar click
+            progressContainer.addEventListener('click', function(e) {
+                const rect = this.getBoundingClientRect();
+                const pos = (e.clientX - rect.left) / rect.width;
+                const newTime = pos * player.getDuration();
+                player.seekTo(newTime, true);
+            });
+            
+            // Fullscreen button
+            fullscreenBtn.addEventListener('click', function() {
+                const iframe = document.querySelector('#video-container iframe');
+                if (iframe.requestFullscreen) {
+                    iframe.requestFullscreen();
+                } else if (iframe.webkitRequestFullscreen) {
+                    iframe.webkitRequestFullscreen();
+                } else if (iframe.msRequestFullscreen) {
+                    iframe.msRequestFullscreen();
+                }
+            });
+            
+            // Settings menu
+            settingsBtn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                settingsMenu.classList.toggle('active');
+            });
+            
+            // Quality options
+            document.querySelectorAll('.quality-option').forEach(option => {
+                option.addEventListener('click', function() {
+                    document.querySelectorAll('.quality-option').forEach(opt => opt.classList.remove('active'));
+                    this.classList.add('active');
+                    // Burada kalite değiştirme işlemi yapılabilir
+                    alert(`Video kalitesi ${this.textContent} olarak değiştirildi!`);
+                });
+            });
+            
+            // Subtitle options
+            document.querySelectorAll('.subtitle-option').forEach(option => {
+                option.addEventListener('click', function() {
+                    document.querySelectorAll('.subtitle-option').forEach(opt => opt.classList.remove('active'));
+                    this.classList.add('active');
+                    // Burada altyazı değiştirme işlemi yapılabilir
+                    alert(`Altyazı ${this.textContent} olarak değiştirildi!`);
+                });
+            });
+            
+            // Close settings when clicking outside
+            document.addEventListener('click', function() {
+                settingsMenu.classList.remove('active');
+            });
+        }
+
+        function onPlayerStateChange(event) {
+            if (event.data === YT.PlayerState.PLAYING) {
+                playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
+            } else if (event.data === YT.PlayerState.PAUSED || event.data === YT.PlayerState.ENDED) {
+                playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
+            }
+        }
+
+        function updateProgressBar() {
+            if (!player || !player.getCurrentTime) return;
+            
+            const currentTime = player.getCurrentTime();
+            const duration = player.getDuration();
+            const percent = (currentTime / duration) * 100;
+            progressBar.style.width = percent + '%';
+            
+            updateTimeDisplay();
+        }
+
+        function updateTimeDisplay() {
+            if (!player || !player.getCurrentTime) return;
+            
+            const currentTime = player.getCurrentTime();
+            const duration = player.getDuration();
+            
+            const currentMinutes = Math.floor(currentTime / 60);
+            const currentSeconds = Math.floor(currentTime % 60);
+            const durationMinutes = Math.floor(duration / 60);
+            const durationSeconds = Math.floor(duration % 60);
+            
+            timeDisplay.textContent = 
+                `${currentMinutes}:${currentSeconds < 10 ? '0' + currentSeconds : currentSeconds} / ` +
+                `${durationMinutes}:${durationSeconds < 10 ? '0' + durationSeconds : durationSeconds}`;
+        }
+
+        // Progress time display on hover
+        progressContainer.addEventListener('mousemove', function(e) {
+            const rect = this.getBoundingClientRect();
+            const pos = (e.clientX - rect.left) / rect.width;
+            const duration = player ? player.getDuration() : 0;
+            const hoverTime = pos * duration;
+            
+            const minutes = Math.floor(hoverTime / 60);
+            const seconds = Math.floor(hoverTime % 60);
+            
+            progressTime.textContent = `${minutes}:${seconds < 10 ? '0' + seconds : seconds}`;
+            progressTime.style.left = (pos * 100) + '%';
+        });
+
+        playButton.addEventListener('click', function() {
+            openPlayerModal('5NYt1qirBWg'); // Varsayılan olarak Harry Potter filmi
+        });
         
         watchNowButtons.forEach(button => {
             button.addEventListener('click', function(e) {
                 e.stopPropagation();
-                openPlayerModal();
+                const movieCard = this.closest('.movie-card');
+                const videoId = movieCard.getAttribute('data-video-id');
+                openPlayerModal(videoId);
             });
         });
 
@@ -1914,9 +2559,9 @@
             playerModal.classList.remove('active');
             document.body.style.overflow = 'auto';
             
-            // Reset the iframe src to stop the video
-            const iframe = playerModal.querySelector('iframe');
-            iframe.src = iframe.src;
+            if (player) {
+                player.stopVideo();
+            }
         });
 
         // Close modal when clicking outside
@@ -1925,9 +2570,117 @@
                 playerModal.classList.remove('active');
                 document.body.style.overflow = 'auto';
                 
-                // Reset the iframe src to stop the video
-                const iframe = playerModal.querySelector('iframe');
-                iframe.src = iframe.src;
+                if (player) {
+                    player.stopVideo();
+                }
+            }
+        });
+
+        // Sidebar functionality
+        const sidebar = document.getElementById('sidebar');
+        const closeSidebar = document.getElementById('close-sidebar');
+        const settingsLink = document.querySelector('.profile-menu a[href="#"]:nth-child(7)'); // Ayarlar linki
+
+        function toggleSidebar() {
+            sidebar.classList.toggle('active');
+        }
+
+        settingsLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            toggleSidebar();
+        });
+
+        closeSidebar.addEventListener('click', toggleSidebar);
+
+        // Sidebar ayarları
+        document.getElementById('master-volume').addEventListener('input', function() {
+            const volume = this.value;
+            if (player) {
+                player.setVolume(volume * 100);
+            }
+            
+            // Ana ses değerini localStorage'a kaydet
+            localStorage.setItem('masterVolume', volume);
+        });
+
+        document.getElementById('background-music').addEventListener('input', function() {
+            const volume = this.value;
+            // Arka plan müziği ses seviyesini localStorage'a kaydet
+            localStorage.setItem('backgroundMusicVolume', volume);
+        });
+
+        document.getElementById('video-quality').addEventListener('change', function() {
+            const quality = this.value;
+            // Video kalitesini localStorage'a kaydet
+            localStorage.setItem('videoQuality', quality);
+            alert(`Video kalitesi ${quality}p olarak ayarlandı!`);
+        });
+
+        document.getElementById('subtitle-language').addEventListener('change', function() {
+            const language = this.value;
+            // Altyazı dilini localStorage'a kaydet
+            localStorage.setItem('subtitleLanguage', language);
+            alert(`Altyazı dili ${this.options[this.selectedIndex].text} olarak ayarlandı!`);
+        });
+
+        document.getElementById('subtitle-size').addEventListener('change', function() {
+            const size = this.value;
+            // Altyazı boyutunu localStorage'a kaydet
+            localStorage.setItem('subtitleSize', size);
+            alert(`Altyazı boyutu ${this.options[this.selectedIndex].text} olarak ayarlandı!`);
+        });
+
+        document.getElementById('dark-mode').addEventListener('change', function() {
+            const darkMode = this.checked;
+            // Karanlık mod ayarını localStorage'a kaydet
+            localStorage.setItem('darkMode', darkMode);
+            
+            if (darkMode) {
+                document.body.style.backgroundColor = '#0f0f1a';
+                document.body.style.color = '#ffffff';
+            } else {
+                document.body.style.backgroundColor = '#f5f5f5';
+                document.body.style.color = '#333333';
+            }
+        });
+
+        document.getElementById('parental-control').addEventListener('change', function() {
+            const parentalControl = this.checked;
+            // Ebeveyn kontrolü ayarını localStorage'a kaydet
+            localStorage.setItem('parentalControl', parentalControl);
+            alert(`Ebeveyn kontrolü ${parentalControl ? 'açıldı' : 'kapatıldı'}!`);
+        });
+
+        document.getElementById('content-rating').addEventListener('change', function() {
+            const rating = this.value;
+            // İçerik sınırını localStorage'a kaydet
+            localStorage.setItem('contentRating', rating);
+            alert(`İçerik sınırı ${rating}+ olarak ayarlandı!`);
+        });
+
+        // Sayfa yüklendiğinde ayarları geri yükle
+        window.addEventListener('DOMContentLoaded', function() {
+            const masterVolume = localStorage.getItem('masterVolume') || 1;
+            const bgMusicVolume = localStorage.getItem('backgroundMusicVolume') || 0.5;
+            const videoQuality = localStorage.getItem('videoQuality') || 'auto';
+            const subtitleLang = localStorage.getItem('subtitleLanguage') || 'tr';
+            const subtitleSize = localStorage.getItem('subtitleSize') || 'medium';
+            const darkMode = localStorage.getItem('darkMode') === 'true' || true;
+            const parentalControl = localStorage.getItem('parentalControl') === 'true' || false;
+            const contentRating = localStorage.getItem('contentRating') || 'all';
+            
+            document.getElementById('master-volume').value = masterVolume;
+            document.getElementById('background-music').value = bgMusicVolume;
+            document.getElementById('video-quality').value = videoQuality;
+            document.getElementById('subtitle-language').value = subtitleLang;
+            document.getElementById('subtitle-size').value = subtitleSize;
+            document.getElementById('dark-mode').checked = darkMode;
+            document.getElementById('parental-control').checked = parentalControl;
+            document.getElementById('content-rating').value = contentRating;
+            
+            if (!darkMode) {
+                document.body.style.backgroundColor = '#f5f5f5';
+                document.body.style.color = '#333333';
             }
         });
 
